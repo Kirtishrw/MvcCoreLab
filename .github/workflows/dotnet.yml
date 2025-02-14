@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Setup .NET Core 8.0.x
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
@@ -39,4 +39,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: '${{env.PUBLISH_PATH}}/Publish/'
         log-level: verbose
-        dry-run: true      
+        # dry-run: true      
