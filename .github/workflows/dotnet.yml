@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  PUBLISH_PATH: '.'
+
 jobs:
   build:
 
@@ -22,7 +25,18 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build App
       run: dotnet build --no-restore
-    - name: Test
+    - name: Test App
       run: dotnet test --no-build --verbosity normal
+    - name: Publish App
+      run: dotnet publish --configuration Release -o '${{env.PUBLISH_PATH}}/Publish'
+    - name: Deploy App using FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: learn.somee.com
+        username: KirtiShrw
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: '${{env.PUBLISH_PATH}}/Publish/'
+        log-level: verbose
+        dry-run: true      
