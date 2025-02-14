@@ -11,6 +11,7 @@ on:
 
 env:
   PUBLISH_PATH: '.'
+  DEPLOY_PATH: 'www.learn.somee.com'
 
 jobs:
   build:
@@ -38,5 +39,6 @@ jobs:
         username: KirtiShrw
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: '${{env.PUBLISH_PATH}}/Publish/'
+        server-dir: '${{env.DEPLOY_PATH}}/'
         log-level: verbose
         # dry-run: true      
