@@ -11,7 +11,7 @@ on:
 
 env:
   PUBLISH_PATH: '.'
-  DEPLOY_PATH: 'www.core.somee.com'
+  DEPLOY_PATH: 'www.learn.somee.com'
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
     - name: Deploy App using FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: core.somee.com
+        server: learn.somee.com
         username: KirtiShrw
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: '${{env.PUBLISH_PATH}}/Publish/'
